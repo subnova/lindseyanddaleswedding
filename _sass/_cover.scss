@@ -1,0 +1,116 @@
+.intro {
+    display: table;
+    width: 100%;
+    height: auto;
+    padding: 35% 0;
+    padding: 25vh 0;
+    text-align: center;
+    color: $primary-colour;
+    background: url(/img/frontpage-small.jpg) no-repeat center center scroll;
+    background-color: #d8d8d8;
+
+    @media(min-width:767px) {
+        height: 100%;
+        padding: 0;
+        background: url(/img/frontpage.jpg) no-repeat center center scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+    }
+
+    .intro-body {
+        display: table-cell;
+        vertical-align: middle;
+
+        .brand-heading {
+            font-size: 40px;
+
+            @media(min-width:767px) {
+                font-size: 100px;
+            }
+        }
+
+        .intro-text {
+            font-size: 18px;
+
+            @media(min-width:767px) {
+                font-size: 25px;
+            }
+        }
+    }
+}
+
+.btn-circle {
+    width: 70px;
+    height: 70px;
+    margin-top: 15px;
+    padding: 7px 16px;
+    border: 2px solid $primary-colour;
+    border-radius: 35px;
+    font-size: 40px;
+    color: $primary-colour;
+    background: 0 0;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+
+    :hover,
+    :focus {
+        outline: 0;
+        color: $primary-colour;
+        background: rgba(255,255,255,.1);
+    }
+
+    i.animated {
+        -webkit-transition-property: -webkit-transform;
+        -webkit-transition-duration: 1s;
+        -moz-transition-property: -moz-transform;
+        -moz-transition-duration: 1s;
+    }
+
+    :hover i.animated {
+        -webkit-animation-name: pulse;
+        -moz-animation-name: pulse;
+        -webkit-animation-duration: 1.5s;
+        -moz-animation-duration: 1.5s;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-timing-function: linear;
+    }
+}
+
+@-webkit-keyframes pulse {    
+    0 {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-moz-keyframes pulse {    
+    0 {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+}

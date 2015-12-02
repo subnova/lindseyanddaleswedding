@@ -1,0 +1,77 @@
+.navbar-custom {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    text-transform: uppercase;
+    font-family: $main-font-stack;
+    background-color: #d8d8d8;
+
+    .navbar-brand {
+        font-weight: 700;
+
+        .navbar-toggle {
+            padding: 4px 6px;
+            font-size: 16px;
+            color: $primary-colour;
+        }
+
+        .navbar-toggle:focus,
+        .navbar-toggle:active {
+            outline: 0;
+        }
+    }
+
+    .navbar-brand:focus {
+        outline: 0;
+    }
+
+    a {
+        color: $primary-colour;
+    }
+
+    .nav {
+        li {
+            .active {
+                outline: nonte;
+                background-color: rgba(255,255,255,.3);
+            }
+
+            a {
+                -webkit-transition: background .3s ease-in-out;
+                -moz-transition: background .3s ease-in-out;
+                transition: background .3s ease-in-out;
+            }
+
+            a:hover,
+            a:focus,
+            a.active {
+                outline: 0;
+                background-color: rgba(255,255,255,.3);                    
+            }
+        }
+    }
+
+    .top-nav-collapse {
+        @media(min-width:767px) {
+            border-bottom: 1px solid rgba(255,255,255,.3);
+        }
+    }
+}
+
+.navbar {
+    @media(min-width:767px) {
+        padding: 0 0;
+        border-bottom: 0;
+        letter-spacing: 1px;
+        background: 0 0;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+}
+
+.top-nav-collapse {
+    @media(min-width:767px) {
+        padding: 0;
+        background-color: #d8d8d8;
+    }
+}
