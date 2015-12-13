@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 		// shell command config
 		shell: {
 			jekyllBuild: {
-				command: 'jekyll build'
+				command: 'jekyll build --config _config.yml,_' + process.env.JEKYLL_ENV + '-config.yml'
 			},
 			jekyllServe: {
 				command: 'jekyll serve'

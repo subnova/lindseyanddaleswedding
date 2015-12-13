@@ -1,0 +1,28 @@
+# Site settings
+title: Lindsey and Dale's Wedding
+email: thehappycouple@lindseyanddaleswedding.co.uk
+url: http://www.lindseyanddaleswedding.co.uk
+description: "Lindsey and Dale are getting married.  Read all about it here."
+
+collections:
+  rsvp:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: rsvp
+    values:
+      layout: rsvp-reply-js
+      permalink: /:collection/status/:name
+
+# Footer settings
+footer: Lindsey and Dale
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+exclude: ['node_modules', 'css', '_scss', 'Gruntfile.js', 'package.json', 'bower.json', 's3_website.yml', 'LICENCE']
+keep_files: ['_site/css']
+

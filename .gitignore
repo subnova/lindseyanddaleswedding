@@ -2,8 +2,9 @@ _site
 .DS_store
 s3_website.yml
 .jekyll-metadata
-_config.yml
 node_modules
 bower_components
 _old
 _rsvp
+_*-config.yml
+
