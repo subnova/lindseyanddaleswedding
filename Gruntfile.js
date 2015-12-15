@@ -22,7 +22,8 @@ module.exports = function(grunt) {
 			target: {
 				rjsConfig: 'js/config.js',
 				options: {
-					'exclude-dev': true
+					'exclude-dev': true,
+                    exclude: ['markdown']
 				}
 			}
 		},
@@ -71,7 +72,7 @@ module.exports = function(grunt) {
                 'sass',
                 'watch',
                 'shell:jekyllServe',
-                'karma'
+                'karma:unit'
             ],
             options: {
                 logConcurrentOutput: true
@@ -87,17 +88,18 @@ module.exports = function(grunt) {
         },
 
         karma: {
-        	options: {
+        	unit: {
         		configFile: 'karma.conf.js'
         	},
-            build: {
+            continuous: {
+                configFile: 'karma.conf.js',
                 singleRun: true
             }
         }
 	});
 
 	grunt.registerTask('serve', [ 'concurrent:serve' ]);
-	grunt.registerTask('build', [ 'shell:jekyllBuild', 'sass', 'bowerRequirejs', 'jshint', 'bootlint', 'karma']);
+	grunt.registerTask('build', [ 'shell:jekyllBuild', 'sass', 'bowerRequirejs', 'jshint', 'bootlint', 'karma:continuous']);
 
 	grunt.registerTask('default', ['build']);
 };

@@ -39,7 +39,8 @@ require.config({
     json: "../bower_components/requirejs-plugins/src/json",
     depend: "../bower_components/requirejs-plugins/src/depend",
     mdown: "../bower_components/requirejs-plugins/src/mdown",
-    noext: "../bower_components/requirejs-plugins/src/noext"
+    noext: "../bower_components/requirejs-plugins/src/noext",
+    "aws-sdk": "../bower_components/aws-sdk/dist/aws-sdk"
   },
   packages: [
 

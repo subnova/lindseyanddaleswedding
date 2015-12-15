@@ -18,7 +18,7 @@ define(['jquery', 'knockout'], function($, ko) {
 		};
 
 		return model;
-	};
+	}
 
 	return {
 		bind: function() {
