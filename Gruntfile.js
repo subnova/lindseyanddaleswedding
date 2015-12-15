@@ -70,7 +70,8 @@ module.exports = function(grunt) {
             serve: [
                 'sass',
                 'watch',
-                'shell:jekyllServe'
+                'shell:jekyllServe',
+                'karma'
             ],
             options: {
                 logConcurrentOutput: true
@@ -83,11 +84,17 @@ module.exports = function(grunt) {
 
         bootlint: {
         	files: ['_site/*.html', '_site/rsvp/*.html', '_site/photos/*.html']
+        },
+
+        karma: {
+        	unit: {
+        		configFile: 'karma.conf.js'
+        	}
         }
 	});
 
 	grunt.registerTask('serve', [ 'concurrent:serve' ]);
-	grunt.registerTask('build', [ 'shell:jekyllBuild', 'sass', 'bowerRequirejs', 'jshint', 'bootlint']);
+	grunt.registerTask('build', [ 'shell:jekyllBuild', 'sass', 'bowerRequirejs', 'jshint', 'bootlint', 'karma']);
 
 	grunt.registerTask('default', ['build']);
 };

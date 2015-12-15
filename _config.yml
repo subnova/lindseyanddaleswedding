@@ -23,6 +23,6 @@ footer: Lindsey and Dale
 markdown: kramdown
 permalink: pretty
 
-exclude: ['node_modules', 'css', '_scss', 'Gruntfile.js', 'package.json', 'bower.json', 's3_website.yml', 'LICENCE']
+exclude: ['node_modules', 'css', '_scss', 'Gruntfile.js', 'package.json', 'bower.json', 's3_website.yml', 'LICENCE', 'README.md', 'karma.conf.js', 'test-main.js']
 keep_files: ['_site/css']
 
