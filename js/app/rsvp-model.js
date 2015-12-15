@@ -42,7 +42,6 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 		var model = {};
 
 		model.allocatedRooms = ko.observableArray();
-		model.selectedRooms = ko.observableArray();
 
 		return model;
 	}
@@ -139,14 +138,15 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 	function populateRoomModel(roomModel, roomData) {
 		roomModel.originalData = roomData;
 
-		_.forEach(roomData, function(room) {
-			roomModel.allocatedRooms.push(idAndLabel(room.type, getRoomDescription(room.type)));
-		});
+        _.forEach(roomData, function(room) {
+            var availableRoomModel = {};
 
-		_.forEach(roomData, function(room) {
-			if (room.selected) {
-				roomModel.selectedRooms.push(room.type);
-			}
+            availableRoomModel.availableOptions = ko.observableArray();
+            availableRoomModel.availableOptions.push(idAndLabel(room.type, getRoomDescription(room.type)));
+            availableRoomModel.availableOptions.push(idAndLabel('NONE', getRoomDescription('NONE')));
+            availableRoomModel.selectedOption = ko.observable(room.selected === true ? room.type : 'NONE');
+
+			roomModel.allocatedRooms.push(availableRoomModel);
 		});
 	}
 
@@ -196,8 +196,8 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 		_.forEach(familyModel.accommodation.allocatedRooms(), function(allocatedRoom) {
 			var roomModel = {};
 
-			roomModel.type = allocatedRoom.id;
-			roomModel.selected = _.contains(familyModel.accommodation.selectedRooms(), allocatedRoom.id);
+			roomModel.type = allocatedRoom.availableOptions()[0].id;
+			roomModel.selected = _.contains(allocatedRoom.selectedOption(), roomModel.type);
 
 			model.rooms.push(roomModel);
 		});

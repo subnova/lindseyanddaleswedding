@@ -43,21 +43,20 @@
                         be added to
                         the waiting list for any rooms that become available.</p>
 
-                    <div>
+                    <div data-bind="foreach: accommodation.allocatedRooms">
                         <select class="form-control"
-                                data-bind="options: accommodation.allocatedRooms,
+                                data-bind="options: availableOptions,
                                            optionsValue: 'id',
                                            optionsText: 'label',
-                                           selectedOptions: accommodation.selectedRooms"
-                                multiple='multiple'
-                                size='2'></select>
+                                           value: selectedOption"></select>
                     </div>
-                    <p>
                 </div>
+                <p>
                 <div class="reply-message">
                     <textarea class="form-control" data-bind="value: replyMessage"
                               placeholder="Personal message..."></textarea>
                 </div>
+                <p>
                 <div class="form-group">
                     <button class="btn btn-default" data-bind="click: rsvp">RSVP</button>
                 </div>

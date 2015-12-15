@@ -77,7 +77,7 @@ define(['jquery', 'lodash', 'knockout', 'app/rsvp-reply', 'text!html/rsvp-reply.
                 }]
             });
 
-            expect($('.accommodation select').length).toEqual(1);
+            expect($('.accommodation select').length).toEqual(2);
         });
 	});
 });

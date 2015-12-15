@@ -122,7 +122,8 @@ define(['app/rsvp-model'], function(rsvpModel) {
 
 			rsvpModel.populateFamilyModel(familyModel, 'family-id', {
 				rooms: [{
-					type: 'STANDARD'
+					type: 'STANDARD',
+					selected: false
 				},
 				{
 					type: 'FAMILY',
@@ -131,10 +132,14 @@ define(['app/rsvp-model'], function(rsvpModel) {
 			});
 
 			expect(familyModel.accommodation.allocatedRooms().length).toEqual(2);
-			expect(familyModel.accommodation.allocatedRooms()).toContain({id:'STANDARD', label:'A double room - £100'});
-			expect(familyModel.accommodation.allocatedRooms()).toContain({id:'FAMILY', label:'A Family room for 4 - £150'});
-			expect(familyModel.accommodation.selectedRooms().length).toEqual(1);
-			expect(familyModel.accommodation.selectedRooms()).toContain('FAMILY');
+			expect(familyModel.accommodation.allocatedRooms()[0].availableOptions().length).toEqual(2);
+			expect(familyModel.accommodation.allocatedRooms()[0].availableOptions()).toContain({id:'STANDARD', label:'A double room - £100'});
+			expect(familyModel.accommodation.allocatedRooms()[0].availableOptions()).toContain({id:'NONE', label:'No thanks, I\'ll make my own arrangements'});
+			expect(familyModel.accommodation.allocatedRooms()[1].availableOptions().length).toEqual(2);
+			expect(familyModel.accommodation.allocatedRooms()[1].availableOptions()).toContain({id:'FAMILY', label:'A Family room for 4 - £150'});
+			expect(familyModel.accommodation.allocatedRooms()[1].availableOptions()).toContain({id:'NONE', label:'No thanks, I\'ll make my own arrangements'});
+			expect(familyModel.accommodation.allocatedRooms()[0].selectedOption()).toEqual('NONE');
+			expect(familyModel.accommodation.allocatedRooms()[1].selectedOption()).toEqual('FAMILY');
 		});
 	});
 
