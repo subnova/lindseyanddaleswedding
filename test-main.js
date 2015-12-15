@@ -16,6 +16,22 @@ require.config({
   // Karma serves files under /base, which is the basePath from your config file
   baseUrl: '/base',
 
+  shim: {
+    "bootstrap-sass": {
+      deps: [
+        "jquery"
+      ]
+    },
+    "jquery.easing": {
+      deps: [
+        "jquery"
+      ]
+    },
+    markdown: {
+      exports: "markdown"
+    }
+  },
+
   paths: {
     'html': "/base/_includes",
     'js': "/base/_site/js",
@@ -28,7 +44,6 @@ require.config({
     "jquery.easing": "/base/_site/bower_components/jquery-easing/jquery.easing.min",
     propertyParser: "/base/_site/bower_components/requirejs-plugins/src/propertyParser",
     text: "/base/_site/bower_components/requirejs-plugins/lib/text",
-    sammy: "/base/_site/bower_components/sammy/lib/sammy",
     lodash: "/base/_site/bower_components/lodash/lodash",
     markdown: "/base/_site/bower_components/markdown/lib/markdown"
   },

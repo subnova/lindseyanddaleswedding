@@ -2,5 +2,5 @@
  "title": {{page.title | jsonify }},
  "guests": {{page.guests | jsonify }},
  "rooms": {{page.rooms | jsonify }},
- "content" {{page.content | jsonify }}
+ "content": {{page.content | jsonify }}
 }

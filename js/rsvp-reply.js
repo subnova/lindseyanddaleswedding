@@ -1,3 +1,8 @@
 requirejs(['./config'], function() {
-	requirejs(['app/rsvp-reply']);
+	requirejs(['js/site', 'app/navbar', 'app/rsvp-reply'], function(site, navbar, rsvpReply) {
+        navbar();
+
+        rsvpReply.bind(site);
+        rsvpReply.load();
+	});
 });

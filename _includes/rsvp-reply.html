@@ -20,7 +20,7 @@
                                                                     optionsText: 'label', 
                                                                     value: dinnerChoice, 
                                                                     visible: attendChoice()==='ACCEPT' || attendChoice()==='ACCEPT_EVENING'"></select>
-                            <textarea class="form-control" data-bind="value: extraInfo, 
+                            <textarea class="form-control" data-bind="value: dinnerInfo, 
                                                                       visible: (attendChoice()==='ACCEPT' || attendChoice()==='ACCEPT_EVENING') && dinnerChoice()==='SPECIAL'"
                                  placeholder="Please provide details of your special dietary requirements"></textarea>
                         </div>
@@ -32,12 +32,17 @@
                             hotel at checkout.  Please let us know whether you would like to take up any allocated rooms, or be added to 
                             the waiting list for any rooms that become available.</p>
                         <div>
-                            <select class="form-control" data-bind="options: accommodationChoices, 
+                            <select class="form-control" data-bind="options: accommodation.allocatedRooms, 
                                                                     optionsValue: 'id',
                                                                     optionsText: 'label', 
-                                                                    value: accommodationChoice"></select>
+                                                                    selectedOptions: accommodation.selectedRooms"
+                                                                    multiple='multiple'
+                                                                    size='2'></select>
                         </div>
                         <p>
+                    </div>
+                    <div>
+                        <textarea class="form-control" data-bind="value: replyMessage" placeholder="Personal message..."></textarea>
                     </div>
                     <div class="form-group"><button class="btn btn-default" data-bind="click: rsvp">RSVP</button></div>
                 </form>

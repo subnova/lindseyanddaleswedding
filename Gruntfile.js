@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 				command: 'jekyll build --config _config.yml,_' + process.env.JEKYLL_ENV + '-config.yml'
 			},
 			jekyllServe: {
-				command: 'jekyll serve'
+				command: 'jekyll serve --config _config.yml,_' + process.env.JEKYLL_ENV + '-config.yml'
 			}
 		},
 
@@ -87,9 +87,12 @@ module.exports = function(grunt) {
         },
 
         karma: {
-        	unit: {
+        	options: {
         		configFile: 'karma.conf.js'
-        	}
+        	},
+            build: {
+                singleRun: true
+            }
         }
 	});
 

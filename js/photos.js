@@ -1,3 +1,5 @@
 requirejs(['./config'], function() {
-	requirejs(['app/photos']);
+	requirejs(['app/navbar'], function(navbar) {
+        navbar();
+	});
 });

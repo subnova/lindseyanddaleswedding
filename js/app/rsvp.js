@@ -1,5 +1,5 @@
-define(['jquery', 'knockout', 'app/navbar'], function($, ko, navbar) {
-	function rsvpModel() {
+define(['jquery', 'knockout'], function($, ko) {
+	function createRsvpModel() {
 		var model = {};
 
 		model.givenName = ko.observable();
@@ -15,13 +15,16 @@ define(['jquery', 'knockout', 'app/navbar'], function($, ko, navbar) {
 					$('#rsvp-unknown-invitee').removeClass('hidden');
 				}
 			});
-		}
+		};
 
 		return model;
-	}
+	};
 
-	// setup the navbar
-	navbar();
-
-	ko.applyBindings(rsvpModel());
+	return {
+		bind: function() {
+			var rsvpModel = createRsvpModel();
+			ko.applyBindings(rsvpModel);
+			return rsvpModel;
+		}
+	};
 });

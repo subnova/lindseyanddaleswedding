@@ -10,5 +10,5 @@ define(function() {
 				secret: '{{ site.apikey.aws.secret }}'
 			}
 		}
-	}
+	};
 });
