@@ -30,6 +30,7 @@
     "jquery-easing": "*",
     "requirejs-plugins": "~1.0.3",
     "lodash": "~3.10.1-amd",
-    "markdown": "~0.5.0"
+    "markdown": "~0.5.0",
+    "flipclock": "FlipClock#~0.7.7"
   }
 }

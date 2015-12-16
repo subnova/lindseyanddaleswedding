@@ -36,7 +36,7 @@ require.config({
     'html': "/base/_includes",
     'js': "/base/_site/js",
     'app': "/base/_site/js/app",
-    "aws": "/base/_site/bower_components/aws-sdk/dist/aws-sdk",
+    "aws-sdk": "/base/_site/bower_components/aws-sdk/dist/aws-sdk",
     "bootstrap-sass": "/base/_site/bower_components/bootstrap-sass/assets/javascripts/bootstrap",
     "google-maps": "/base/_site/bower_components/google-maps/lib/Google",
     jquery: "/base/_site/bower_components/jquery/dist/jquery",
@@ -45,7 +45,8 @@ require.config({
     propertyParser: "/base/_site/bower_components/requirejs-plugins/src/propertyParser",
     text: "/base/_site/bower_components/requirejs-plugins/lib/text",
     lodash: "/base/_site/bower_components/lodash/lodash",
-    markdown: "/base/_site/bower_components/markdown/lib/markdown"
+    markdown: "/base/_site/bower_components/markdown/lib/markdown",
+    flipclock: "/base/_site/bower_components/flipclock/compiled/flipclock"
   },
 
   // dynamically load all test files

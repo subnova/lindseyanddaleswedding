@@ -1,4 +1,4 @@
-define(['jquery'], function($) {
+define(['jquery', 'aws-sdk'], function($) {
 	return function(site, familyId, persistentModel) {
 		var promise = $.Deferred();
 

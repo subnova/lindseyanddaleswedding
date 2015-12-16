@@ -12,12 +12,17 @@ require.config({
     },
     markdown: {
       exports: "markdown"
+    },
+    flipclock: {
+      deps: [
+        "jquery"
+      ],
+      exports: "flipclock"
     }
   },
   paths: {
     js: ".",
     app: "app",
-    aws: "../bower_components/aws-sdk/dist/aws-sdk",
     "bootstrap-sass": "../bower_components/bootstrap-sass/assets/javascripts/bootstrap",
     "google-maps": "../bower_components/google-maps/lib/Google",
     jquery: "../bower_components/jquery/dist/jquery",
@@ -40,7 +45,8 @@ require.config({
     depend: "../bower_components/requirejs-plugins/src/depend",
     mdown: "../bower_components/requirejs-plugins/src/mdown",
     noext: "../bower_components/requirejs-plugins/src/noext",
-    "aws-sdk": "../bower_components/aws-sdk/dist/aws-sdk"
+    "aws-sdk": "../bower_components/aws-sdk/dist/aws-sdk",
+    flipclock: "../bower_components/flipclock/compiled/flipclock"
   },
   packages: [
 

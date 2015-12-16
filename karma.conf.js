@@ -24,7 +24,9 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      '_site/js/config.js'
+      '_site/js/config.js',
+      '_site/bower_components/flipclock/Gruntfile.js',
+      '_site/bower_components/flipclock/node_modules/**'
     ],
 
 
