@@ -13,12 +13,12 @@ define(['lodash', 'knockout', 'app/rsvp-model', 'app/rsvp-load', 'app/rsvp-save'
 		};
 
 		model.rsvp = function() {
-			rsvpSave(site, model.familyId, rsvpModel.buildPersistentModel(model))
+			rsvpSave(site, model.familyId, rsvpModel.buildPersistenceModel(model))
 			.done(function() {
-				// TODO: saved message
+				console.log('Saved');
 			})
-			.fail(function() {
-				// TODO: error message
+			.fail(function(msg) {
+				console.log('Error ' + msg);
 			});
 		};
 
