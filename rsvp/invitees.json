@@ -3,7 +3,7 @@
 {
 {% for r in site.rsvp %}
   {% for guest in r.guests %}
-  "{{ guest.name }}":"/rsvp/response#{{r.url | remove_first:'/rsvp/status/'}}"
+  "{{ guest.name | downcase }}":"/rsvp/response#{{r.url | remove_first:'/rsvp/status/'}}"
   {% if forloop.last == false %},{% endif %}
   {% endfor %}
   {% if forloop.last == false %},{% endif %}

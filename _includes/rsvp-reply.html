@@ -51,14 +51,24 @@
                                            value: selectedOption"></select>
                     </div>
                 </div>
-                <p>
+                <p></p>
                 <div class="reply-message">
                     <textarea class="form-control" data-bind="value: replyMessage"
                               placeholder="Personal message..."></textarea>
                 </div>
-                <p>
+                <p></p>
                 <div class="form-group">
-                    <button class="btn btn-default" data-bind="click: rsvp">RSVP</button>
+                    <p>
+                        <button class="btn btn-default" data-bind="click: rsvp">RSVP</button>
+                    </p>
+                    <p class="bg-success hidden">
+                        <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>
+                        Thank you, your reply has been received.  If you need to provide
+                        an updated response then you can re-submit at a later date.</p>
+                    <p class="bg-warning hidden">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        I'm sorry, there's been a problem saving your response.  Please
+                        try again later.</p>
                 </div>
             </form>
         </div>

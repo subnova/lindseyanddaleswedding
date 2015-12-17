@@ -6,7 +6,7 @@ define(['jquery', 'knockout'], function($, ko) {
 		model.familyName = ko.observable();
 		model.submit = function() {
 			$.get('/rsvp/invitees.json').done(function(invitees) {
-				var fullName = model.givenName().trim() + ' ' + model.familyName().trim(),
+				var fullName = model.givenName().trim().toLowerCase() + ' ' + model.familyName().trim().toLowerCase(),
 					url = invitees[fullName];
 
 				if (url) {

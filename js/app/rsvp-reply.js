@@ -13,12 +13,19 @@ define(['lodash', 'knockout', 'app/rsvp-model', 'app/rsvp-load', 'app/rsvp-save'
 		};
 
 		model.rsvp = function() {
+            var $success = $('.bg-success'),
+                $error = $('.bg-warning');
+
+            $success.addClass('hidden');
+            $error.addClass('hidden');
 			rsvpSave(site, model.familyId, rsvpModel.buildPersistenceModel(model))
 			.done(function() {
-				console.log('Saved');
+                console.log("Saved OK");
+                $success.removeClass('hidden');
 			})
 			.fail(function(msg) {
-				console.log('Error ' + msg);
+                console.log("Error: " + msg);
+				$error.removeClass('hidden');
 			});
 		};
 
