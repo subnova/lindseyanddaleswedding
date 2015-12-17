@@ -41,6 +41,22 @@
     }
 }
 
+.rsvp {
+    width: 100%;
+    height: auto;
+    background: url(/img/frontpage-small.jpg) no-repeat center center scroll;
+    background-color: #d8d8d8;
+
+    @media(min-width:767px) {
+        height: 100%;
+        background: url(/img/frontpage-medium.jpg) no-repeat center center scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+    }
+}
+
 .btn-circle {
     width: 70px;
     height: 70px;
