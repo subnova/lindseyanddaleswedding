@@ -1,0 +1,19 @@
+.flip-clock-wrapper {
+
+  .flip-clock-divider .flip-clock-label {
+    display: none;
+  }
+
+  .inn {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  display: none;
+
+  @media(min-width:767px) {
+    display: block;
+  }
+
+}
+
+@import '../bower_components/flipclock/compiled/flipclock.css';

@@ -8,7 +8,8 @@ define(['jquery', 'flipclock'], function($) {
 
         // Instantiate a coutdown FlipClock
         clock = $(cssSelector).FlipClock(diff, {
-            clockFace: 'DailyCounter'
+            clockFace: 'DailyCounter',
+            countdown: true
         });
     };
 });

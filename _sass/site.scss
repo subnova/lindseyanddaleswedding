@@ -10,17 +10,7 @@ $primary-colour:    #f28500;
 $link-colour:       #ffa62f;
 $hover-colour:      #666362;
 
-.flip-clock-divider .flip-clock-label {
-  font-family: $fancy-font-stack;
-  font-size: 20px;
-  color: $primary-colour;
-}
-
-.flip-clock-wrapper ul li a div .shadow {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-@import '../bower_components/flipclock/compiled/flipclock.css';
+@import '_flipclock';
 
 @import '_style';
 @import '_navbar';
