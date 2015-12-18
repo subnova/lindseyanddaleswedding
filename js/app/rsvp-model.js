@@ -14,8 +14,14 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 				return "The Bridal suite ~ £10000";
 			case 'STANDARD':
 				return "A double room - £100";
+            case 'TWIN':
+                return "A twin room - £100";
 			case 'FAMILY':
 				return "A Family room for 4 - £150";
+            case 'ZBED':
+                return "An additional zed-bed - £35";
+            case 'COT':
+                return "An additional cot - £0";
 			case 'WAITING':
 				return "Please add me to the waiting list for rooms - £100 if allocated";
 			case 'NONE':

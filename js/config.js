@@ -54,6 +54,6 @@ require.config({
 });
 
 // configure loading of fonts
-requirejs(['./site'], function(site) {
-  requirejs(['font!typekit,id:' + site.apikey.typekit], function() {});
+requirejs(['./site', 'bower-webfontloader'], function(site, webfont) {
+    webfont.load({typekit: { id: site.apikey.typekit }});
 });

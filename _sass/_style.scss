@@ -121,3 +121,17 @@ img {
 .wf-active label {
     visibility: visible;
 }
+
+
+.wf-inactive h1,
+.wf-inactive h2,
+.wf-inactive h3,
+.wf-inactive h4,
+.wf-inactive h5,
+.wf-inactive h6,
+.wf-inactive p,
+.wf-inactive a,
+.wf-inactive label {
+    font-family: $fancy-font-stack;
+    visibility: visible;
+}
