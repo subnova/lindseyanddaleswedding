@@ -8,9 +8,13 @@ define(['lodash', 'knockout', 'app/rsvp-model', 'app/rsvp-load', 'app/rsvp-save'
 			rsvpModel.populateFamilyModel(model, familyId, persistentModel);
 		};
 
-		model.anyoneAccepted = function() {
-			return _.filter(model.guests(), function(guest) { return guest.attendChoice()==='ACCEPT' || guest.attendChoice()==='ACCEPT_EVENING'; }).length > 0;
-		};
+        model.noAccommodation = function() {
+            return _.filter(model.accommodation.allocatedRooms(), function(room) { return room.selectedOption() !== 'NONE' && room.selectedOption() !== 'WAITING'; }).length === 0;
+        };
+
+        model.attendingGuests = function() {
+            return _.filter(model.guests(), function(guest) { return _.startsWith(guest.attendChoice(), 'ACCEPT'); });
+        }
 
 		model.rsvp = function() {
             var $success = $('.bg-success'),

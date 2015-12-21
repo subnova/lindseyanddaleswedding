@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accommodation" data-bind="visible: anyoneAccepted()">
+                <div class="accommodation" data-bind="visible: attendingGuests().length > 0">
                     <h3>Accommodation</h3>
 
                     <p>All the rooms at the hotel are exclusively available to The Wedding Party and Guests. We have
@@ -56,6 +56,25 @@
                                            optionsValue: 'id',
                                            optionsText: 'label',
                                            value: selectedOption"></select>
+                    </div>
+                </div>
+                <p></p>
+                <div class="transport" data-bind="visible: noAccommodation()">
+                    <h3>Transport</h3>
+
+                    <p>Coaches have been booked between the Old Bowling Green, Winster and the hotel to
+                    bring both day and evening guests from the area to Losehill House and take everyone home at
+                    the end of the night. Please let us know if you would like a place on the coaches so we can
+                    get the right sized coach. A volunteer on the coach home will collect the cash and
+                    pay the driver. If you're on the waiting list for accommodation we will take you off the
+                    transport list if we're able to allocate you a place.</p>
+
+                    <div data-bind="foreach: attendingGuests()">
+                        <select class="form-control"
+                                data-bind="options: transportChoices,
+                                           optionsValue: 'id',
+                                           optionsText: 'label',
+                                           value: transportChoice"></select>
                     </div>
                 </div>
                 <p></p>

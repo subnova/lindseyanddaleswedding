@@ -23,6 +23,7 @@ define(['app/rsvp-model'], function(rsvpModel) {
 // 	  	dinner:
 // 	  	  type: 'STANDARD',
 // 	  	  info: 'No nuts please'
+//      transport: 'BUS'
 // 	  }
 // 	],
 // 	rooms: [
@@ -170,7 +171,8 @@ define(['app/rsvp-model'], function(rsvpModel) {
 					name: "Guest Name C",
 					type: 'DAY',
 					child: true,
-					attending: 'ACCEPT'
+					attending: 'ACCEPT',
+                    transport: 'BUS'
 				}],
 				rooms: [{
 					type: 'STANDARD'
@@ -191,11 +193,7 @@ define(['app/rsvp-model'], function(rsvpModel) {
 					name: "Guest Name A",
 					type: 'DAY',
 					child: false,
-					attending: 'REJECT',
-					dinner: {
-						type: 'SPECIAL',
-						info: 'No nuts please'
-					}
+					attending: 'REJECT'
 				},
 				{
 					name: "Guest Name B",
@@ -205,7 +203,8 @@ define(['app/rsvp-model'], function(rsvpModel) {
 					dinner: {
 						type: 'STANDARD',
 						info: undefined
-					}
+					},
+                    transport: 'BUS'
 				},
 				{
 					name: "Guest Name C",
@@ -215,7 +214,8 @@ define(['app/rsvp-model'], function(rsvpModel) {
 					dinner: {
 						type: 'CHILDS',
 						info: undefined
-					}
+					},
+                    transport: 'BUS'
 				}],
 				rooms: [{
 					type: 'STANDARD',

@@ -40,6 +40,8 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 		model.dinnerChoices = ko.observableArray();
 		model.dinnerChoice = ko.observable();
 		model.dinnerInfo = ko.observable();
+        model.transportChoices = ko.observableArray();
+        model.transportChoice = ko.observable();
 
 		return model;
 	}
@@ -94,26 +96,46 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 					guestModel.attendChoice('ACCEPT_EVENING');
 				}
 				break;
+            case 'BUMP':
+                guestModel.attendChoices.push(idAndLabel("ACCEPT", "Will be attending if born"));
+                guestModel.attendChoices.push(idAndLabel("REJECT", "Is sorry, but it's too soon for my 1st wedding"));
+                if (attendingData) {
+                    guestModel.attendChoice(attendingData);
+                } else {
+                    guestModel.attendChoice('ACCEPT');
+                }
+                break;
+            case 'BUMP_PARENT':
+                guestModel.attendChoices.push(idAndLabel("ACCEPT", "Will be attending the wedding (or the birthing room)"));
+                guestModel.attendChoices.push(idAndLabel("REJECT", "Is sorry, but the timings just don't work"));
+                if (attendingData) {
+                    guestModel.attendChoice(attendingData);
+                } else {
+                    guestModel.attendChoice('ACCEPT');
+                }
+                break;
 			default:
 				console.log('Unknown guest type ' + guestType);
 		}
 	}
 
 	function populateDinnerFields(guestModel, guestType, isChild, dinnerData) {
-		if (guestType !== 'EVENING') {
-			if (isChild) {
-				guestModel.dinnerChoices.push(idAndLabel('CHILDS', 'Would like a child\'s dinner'));
-			} 
-			guestModel.dinnerChoices.push(idAndLabel('STANDARD', 'Would like the standard dinner'));
-			guestModel.dinnerChoices.push(idAndLabel('VEGETARIAN', 'Would like the vegetarian dinner'));
-			guestModel.dinnerChoices.push(idAndLabel('SPECIAL', 'Would like a dinner that corresponds to special dietary requirements'));
-			if (dinnerData && dinnerData.type) {
-				guestModel.dinnerChoice(dinnerData.type);
-			} else if (isChild) {
-				guestModel.dinnerChoice('CHILDS');
-			} else {
-				guestModel.dinnerChoice('STANDARD');
-			}
+        if (guestType === 'BUMP') {
+            guestModel.dinnerChoices.push(idAndLabel('BOOBY', 'Would like some of Mummy\'s milk or a nice bottle'));
+        } else if (guestType !== 'EVENING') {
+            if (isChild) {
+                guestModel.dinnerChoices.push(idAndLabel('CHILDS', 'Would like a child\'s dinner'));
+            }
+            guestModel.dinnerChoices.push(idAndLabel('STANDARD', 'Would like the standard dinner'));
+            guestModel.dinnerChoices.push(idAndLabel('VEGETARIAN', 'Would like the vegetarian dinner'));
+            guestModel.dinnerChoices.push(idAndLabel('SPECIAL', 'Would like a dinner that corresponds to special dietary requirements'));
+            if (dinnerData && dinnerData.type) {
+                guestModel.dinnerChoice(dinnerData.type);
+            } else if (isChild) {
+                guestModel.dinnerChoice('CHILDS');
+            } else {
+                guestModel.dinnerChoice('STANDARD');
+            }
 		} else {
 			guestModel.dinnerChoices.push(idAndLabel('STANDARD', 'Would like the standard supper'));
 			guestModel.dinnerChoices.push(idAndLabel('VEGETARIAN', 'Would like the vegetarian supper'));
@@ -129,6 +151,12 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 		}
 	}
 
+    function populateTransportFields(guestModel, guestData) {
+        guestModel.transportChoices.push(idAndLabel('BUS', guestModel.name() + ' - £15 return'));
+        guestModel.transportChoices.push(idAndLabel('NONE', 'No thanks, I\'ll make my own way'));
+        guestModel.transportChoice(guestData.transport ? guestData.transport : 'BUS');
+    }
+
 	function populateGuestModel(guestModel, guestData) {
 		guestModel.originalData = guestData;
 
@@ -136,6 +164,7 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 			guestModel.name(guestData.name);
 			populateAttendingFields(guestModel, guestData.type, guestData.attending);
 			populateDinnerFields(guestModel, guestData.type, guestData.child, guestData.dinner);
+            populateTransportFields(guestModel, guestData);
 		} else {
 			console.log("Don't know guests name or type - can't render data");
 		}
@@ -180,7 +209,7 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 	}
 
 	function buildPersistenceModel(familyModel) {
-		var model = {};
+		var model = {}, acceptedGuests = 0;
 
 		model.title = familyModel.originalData.title;
 		model.content = familyModel.originalData.content;
@@ -192,10 +221,14 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 			guestModel.type = guest.originalData.type;
 			guestModel.child = guest.originalData.child;
 			guestModel.attending = guest.attendChoice();
-			guestModel.dinner = {
-				type: guest.dinnerChoice(),
-				info: guest.dinnerInfo()
-			};
+            if (_.startsWith(guestModel.attending, 'ACCEPT')) {
+                ++acceptedGuests;
+                guestModel.dinner = {
+                    type: guest.dinnerChoice(),
+                    info: guest.dinnerInfo()
+                };
+                guestModel.transport = guest.transportChoice();
+            }
 			model.guests.push(guestModel);
 		});
 		model.rooms = [];
@@ -203,10 +236,16 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 			var roomModel = {};
 
 			roomModel.type = allocatedRoom.availableOptions()[0].id;
-			roomModel.selected = _.contains(allocatedRoom.selectedOption(), roomModel.type);
+			roomModel.selected = acceptedGuests > 0 && _.contains(allocatedRoom.selectedOption(), roomModel.type);
 
 			model.rooms.push(roomModel);
 		});
+        if (_.filter(model.rooms, function(room) {
+                return room.selected === true &&
+                    room.type !== 'NONE' &&
+                    room.type !== 'WAITING'; }).length === model.rooms.length) {
+            _.forEach(model.guests, function(guest) { guest.transport = 'NONE'; });
+        }
 		model.message = familyModel.replyMessage();
 
 		return model;
