@@ -152,7 +152,14 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 	}
 
     function populateTransportFields(guestModel, guestData) {
-        guestModel.transportChoices.push(idAndLabel('BUS', guestModel.name() + ' - £15 return'));
+        var busLabel = guestModel.name();
+        if (guestData.child) {
+            busLabel += ' £0 return';
+        } else {
+            busLabel += ' £15 return';
+        }
+
+        guestModel.transportChoices.push(idAndLabel('BUS', busLabel));
         guestModel.transportChoices.push(idAndLabel('NONE', 'No thanks, I\'ll make my own way'));
         guestModel.transportChoice(guestData.transport ? guestData.transport : 'BUS');
     }
