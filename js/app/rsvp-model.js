@@ -19,7 +19,7 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 			case 'FAMILY':
 				return "A Family room for 4 - £150";
             case 'ZBED':
-                return "An additional zed-bed - £35";
+                return "An additional Z-bed - £35";
             case 'COT':
                 return "An additional cot - £0";
 			case 'WAITING':
