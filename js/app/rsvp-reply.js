@@ -26,6 +26,9 @@ define(['lodash', 'knockout', 'app/rsvp-model', 'app/rsvp-load', 'app/rsvp-save'
 			.done(function() {
                 console.log("Saved OK");
                 $success.removeClass('hidden');
+				setTimeout(function() {
+					window.location.pathname = "/";
+				}, 3000);
 			})
 			.fail(function(msg) {
                 console.log("Error: " + msg);
