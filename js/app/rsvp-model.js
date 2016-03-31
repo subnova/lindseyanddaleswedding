@@ -247,7 +247,7 @@ define(['knockout', 'lodash', 'markdown'], function(ko, _, markdown) {
 
 			model.rooms.push(roomModel);
 		});
-        if (_.filter(model.rooms, function(room) {
+        if (model.rooms.length !== 0 && _.filter(model.rooms, function(room) {
                 return room.selected === true &&
                     room.type !== 'NONE' &&
                     room.type !== 'WAITING'; }).length === model.rooms.length) {
