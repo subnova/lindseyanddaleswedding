@@ -14,7 +14,7 @@ define(['lodash', 'knockout', 'app/rsvp-model', 'app/rsvp-load', 'app/rsvp-save'
 
         model.attendingGuests = function() {
             return _.filter(model.guests(), function(guest) { return _.startsWith(guest.attendChoice(), 'ACCEPT'); });
-        }
+        };
 
 		model.rsvp = function() {
             var $success = $('.bg-success'),
